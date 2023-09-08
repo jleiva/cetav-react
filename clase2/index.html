@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+
+<body>
+  <div id="root">not rendered</div>
+
+  <script type="text/babel">
+    const rootElement = document.getElementById('root')
+
+    // Metodos DOM 
+    // const element = document.createElement('div')
+    // element.textContent = 'Hello World'
+    // element.className = 'container'
+    // rootElement.appendChild(element)
+
+    // Sin JSX
+    // createElement(type, props, ...children)
+    // https://react.dev/reference/react/createElement
+
+    // const Heading1 = () => React.createElement('h1', {}, 'Este es mi primer titulo')
+    // const MyParrafo = () => React.createElement('p', {}, 'Se esta complicando')
+
+    // const MiList = () => {
+    //   return React.createElement('ul',
+    //     {},
+    //     React.createElement('li', {}, 'Item uno'),
+    //     React.createElement('li', {}, 'Item dos')
+    //   )
+    // }
+
+    // const MyApp = () => {
+    //   return React.createElement('div',
+    //     { id: 'wrapper', className: 'main-content' },
+    //     React.createElement(Heading1),
+    //     React.createElement(MyParrafo),
+    //     React.createElement(MiList),
+    //   );
+    // }
+
+    const Heading1 = () => <h1>Este es mi primer titulo</h1>
+    const MyParrafo = () => <p>Ya no Se esta complicando</p>
+
+    const MiList = () => {
+      return <ul>
+        <li>Item uno</li>
+        <li>Item dos</li>
+      </ul>
+    }
+
+    const MyApp = () => {
+      return (
+        <div id="wrapper" className="main-content">
+          <Heading1 />
+          <MyParrafo />
+          <MiList />
+        </div>
+      )
+    }
+
+    const root = ReactDOM.createRoot(rootElement)
+    root.render(React.createElement(MyApp))
+  </script>
+</body>
+
+</html>
