@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+
+<body>
+  <div id="root">
+    <header>
+      <nav></nav>
+    </header>
+    <main>
+      <sidebar></sidebar>
+      <div></div>
+    </main>
+    <footer></footer>
+  </div>
+
+  <script type="text/babel">
+    const rootElement = document.getElementById('root')
+
+    // Metodos DOM 
+    // const element = document.createElement('div')
+    // element.textContent = 'Hello World'
+    // element.className = 'container'
+    // rootElement.appendChild(element)
+
+    // Sin JSX
+    // createElement(type, props, ...children)
+    // https://react.dev/reference/react/createElement
+
+    // const Heading1 = () => React.createElement('h1', {}, 'Este es mi primer titulo')
+    // const MyParrafo = () => React.createElement('p', {}, 'Se esta complicando')
+
+    // const List = () => {
+    //   return React.createElement('ul',
+    //     {},
+    //     React.createElement('li', {}, 'Item uno'),
+    //     React.createElement('li', {}, 'Item dos')
+    //   )
+    // }
+
+    // const MyApp = () => {
+    //   return React.createElement('div',
+    //     { id: 'wrapper', className: 'main-content' },
+    //     React.createElement(Heading1),
+    //     React.createElement(MyParrafo),
+    //     React.createElement(List),
+    //   );
+    // }
+
+    const Heading1 = () => <h1>Este es mi primer titulo</h1>;
+
+    // Nuestro primer componente con props!
+    const Button = (props) => {
+      console.log('props', props)
+
+      return <button className={props.variant} type={props.type}>{props.text}</button>
+    }
+
+    // Como "pasamos" los props en linea 68 y 69 es equivalente
+    // podemos pasar uno a uno los props, o podemos usar spread operator para 
+    // pasar el objeto de props completo
+    const PrimaryButton = (props) => <Button variant="primary" type={props.type} text={props.text} />
+    const SecondayButton = (props) => <Button variant="secondary" {...props} />
+
+    const Header = () => (
+      <header>
+        <SecondayButton text="Sign in" type="submit" />
+        <Heading1 />
+      </header>
+    );
+
+    const MyParrafo = () => <p>Ya no se esta complicando</p>
+
+    const List = (props) => {
+      console.log('List props', props);
+
+      // JSX elements directly inside a map() call always need keys!
+      // https://react.dev/learn/rendering-lists
+      const listItems = props.dataList.map((item, idx) => <li key={idx}>{item}</li>);
+
+      return (
+        <ul>
+          {listItems}
+        </ul>);
+    }
+
+    const MainContent = () => {
+      // Otra opcion es que <List /> tenga logica para
+      // hacer el fetch de los datos
+      const data = ['Item uno', 'Item dos', 'Item tres']; // Asumimos que data viene de un API
+
+      data.push('Uno extra');
+
+      return (
+        <main>
+          <MyParrafo />
+          <List dataList={data} />
+        </main>
+      )
+    };
+
+    const Footer = () => {
+      // Otra opcion es que <List /> tenga logica para
+      // hacer el fetch de los datos
+      const data = [23, , 45, 67]; // Asumimos que data viene de un API
+
+      return (
+        <footer className="mi-clase">
+          <PrimaryButton type="button" text="Register" />
+          <p>Este es mi footer</p>
+          <List dataList={data} />
+        </footer>
+      )
+    };
+
+    // Uno puede tener un componente con toda la logica/markup de mi app,
+    // pero no es lo recomendado, nos limita reusabilidad de código
+    // y muchas muchas veces complica la mantenibilidad.
+    const Componentote = () => {
+      return (
+        <React.Fragment>
+          <header>
+            <SecondayButton text="Sign in" type="submit" />
+            <h1>Este es mi primer titulo</h1>
+          </header>
+          <main>
+            <p>Ya no Se esta complicando</p>
+            <ul>
+              <li>Item uno</li>
+              <li>Item dos</li>
+            </ul>
+          </main>
+          <Footer />
+        </React.Fragment>
+      );
+    };
+
+    // Ejemplo básico de un layout del app, podria tener algún tipo 
+    // de condición, y con base en eso, hacer render de un layout u otro
+    const Layout = () => {
+      return (
+        <div id="wrapper" className="main-content">
+          <Header />
+          <MainContent />
+          <Footer />
+        </div>
+      )
+    };
+
+    const MyApp = () => <Layout />;
+
+    const root = ReactDOM.createRoot(rootElement)
+    root.render(React.createElement(MyApp))
+  </script>
+</body>
+
+</html>
