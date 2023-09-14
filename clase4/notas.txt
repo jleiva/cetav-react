@@ -1,0 +1,5 @@
+JSX y {}
+
+- No statements solo expressions 
+- https://www.joshwcomeau.com/javascript/statements-vs-expressions/
+- https://www.youtube.com/watch?v=eWTuFoBYiwg
