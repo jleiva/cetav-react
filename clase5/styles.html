@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>JSX</title>
+  <script src="https://unpkg.com/react@18.2.0/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@18.2.0/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+  <style>
+    .box {
+      border: 1px solid #333;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .box--large {
+      width: 270px;
+      height: 270px;
+    }
+
+    .box--medium {
+      width: 180px;
+      height: 180px;
+    }
+
+    .box--small {
+      width: 90px;
+      height: 90px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="root">not rendered</div>
+
+  <script type="text/babel">
+    // Your job is to apply the right className and style props to the divs so the
+    // styles applied match the text content.
+
+    // 🐨 add a className prop to each div and apply the correct class names
+    // based on the text content
+    // 💰 Here are the available class names: box, box--large, box--medium, box--small
+    // 💰 each of the elements should have the "box" className applied
+
+    // 🐨 add a style prop to each div so their background color
+    // matches what the text says it should be
+    // 🐨 also use the style prop to make the font italic
+    // 💰 Here are available style attributes: backgroundColor, fontStyle
+
+    const smallBox = <div>small lightblue box</div>
+    const mediumBox = <div>medium pink box</div>
+    const largeBox = <div>large orange box</div>
+
+    const App = () => {
+      return (
+        <div>
+          {smallBox}
+          {mediumBox}
+          {largeBox}
+        </div>
+      )
+    };
+
+    const container = document.getElementById("root");
+    const root = ReactDOM.createRoot(container);
+    root.render(React.createElement(App));
+  </script>
+</body>
+
+</html>

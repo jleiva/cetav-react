@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>JSX</title>
+  <script src="https://unpkg.com/react@18.2.0/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@18.2.0/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+
+<body>
+  <div id="root">not rendered</div>
+
+  <script type="text/babel">
+    // Make a function called `message` which returns the JSX we want to share
+
+    // 🐨 use that function in place of the divs below with:
+    // 💰 {message({children: 'Hello World'})} {message({children: 'Goodbye World'})}
+    const element = (
+      <div className="container">
+        <div className="message">Hello World</div>
+        <div className="message">Goodbye World</div>
+      </div>
+    )
+
+    const App = () => {
+      return (
+        <div>
+          {element}
+        </div>
+      )
+    };
+
+    const container = document.getElementById("root");
+    const root = ReactDOM.createRoot(container);
+    root.render(React.createElement(App));
+  </script>
+</body>
+
+</html>
